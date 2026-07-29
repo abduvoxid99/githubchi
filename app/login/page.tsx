@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
@@ -36,7 +37,14 @@ export default function LoginPage() {
           <GitHubIcon />
           GitHub orqali kirish
         </button>
-        <p className="mt-4 font-mono text-[11px] text-[var(--fg-muted)]">
+        <p className="mt-4 text-xs leading-relaxed text-[var(--fg-muted)]">
+          Kirish orqali siz{" "}
+          <Link href="/shartlar" className="text-[var(--accent)] hover:underline">
+            Foydalanish shartlari
+          </Link>
+          ga rozilik bildirasiz.
+        </p>
+        <p className="mt-3 font-mono text-[11px] text-[var(--fg-muted)]">
           repo: username/githubchi · branch: main
         </p>
       </div>

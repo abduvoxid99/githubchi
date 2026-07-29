@@ -773,3 +773,53 @@ input[type="number"].select::-webkit-inner-spin-button {
     background-position: -100% 0;
   }
 }
+
+/* Foydalanish shartlari */
+.prose-terms h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--fg);
+}
+
+.prose-terms p {
+  margin: 0 0 0.85rem;
+  color: var(--fg);
+}
+
+.prose-terms p:last-child {
+  margin-bottom: 0;
+}
+
+.prose-terms ul,
+.prose-terms ol {
+  margin: 0 0 0.85rem;
+  padding-left: 1.25rem;
+}
+
+.prose-terms li {
+  margin-bottom: 0.4rem;
+}
+
+.prose-terms li:last-child {
+  margin-bottom: 0;
+}
+
+.prose-terms code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.8em;
+  padding: 0.1em 0.35em;
+  border-radius: 0.25rem;
+  border: 1px solid var(--border);
+  background: var(--background);
+}
+
+.prose-terms strong {
+  font-weight: 600;
+}
+
+a.app-header__logo {
+  text-decoration: none;
+  color: inherit;
+}

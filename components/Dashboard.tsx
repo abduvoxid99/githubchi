@@ -1,6 +1,7 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { clearApiToken, createActionStream, deleteActionStream, fetchActions, fetchGithubMeta, type ActionDto, type ProgressEvent } from "@/lib/api";
 import {
@@ -476,9 +477,9 @@ export function Dashboard() {
                                                     )}
                                                 </div>
                                                 <div className="flex flex-wrap gap-2">
-                                                    {a.githubUrl && !cancelled && (
+                                                    {username && !cancelled && (
                                                         <a
-                                                            href={a.githubUrl}
+                                                            href={`https://github.com/${username}?tab=overview&from=${a.year}-01-01&to=${a.year}-12-31`}
                                                             target="_blank"
                                                             rel="noreferrer"
                                                             className="rounded-lg border border-[var(--border)] px-3 py-1.5 text-sm hover:bg-[var(--hover)]"
@@ -514,6 +515,12 @@ export function Dashboard() {
                     )}
                 </section>
             </div>
+
+            <footer className="border-t border-[var(--border)] py-4 text-center text-xs text-[var(--fg-muted)]">
+                <Link href="/shartlar" className="text-[var(--accent)] hover:underline">
+                    Foydalanish shartlari
+                </Link>
+            </footer>
 
             <ConfirmModal
                 open={confirmCommitOpen}
