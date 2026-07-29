@@ -1,7 +1,6 @@
 "use client";
 
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { clearApiToken, createActionStream, deleteActionStream, fetchActions, fetchGithubMeta, type ActionDto, type ProgressEvent } from "@/lib/api";
 import {
@@ -515,12 +514,6 @@ export function Dashboard() {
                     )}
                 </section>
             </div>
-
-            <footer className="border-t border-[var(--border)] py-4 text-center text-xs text-[var(--fg-muted)]">
-                <Link href="/shartlar" className="text-[var(--accent)] hover:underline">
-                    Foydalanish shartlari
-                </Link>
-            </footer>
 
             <ConfirmModal
                 open={confirmCommitOpen}

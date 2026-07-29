@@ -14,17 +14,24 @@ type Props = {
 
 const STEP_LABELS: Record<string, string> = {
   validating: "Tekshirish",
-  cloning: "Clone / repo",
+  cloning: "Tekshirish",
   committing: "Commit",
   pushing: "Push",
   saving: "Saqlash",
   reverting: "Revert",
-  done: "Tayyor",
+  done: "Saqlash",
   error: "Xato",
 };
 
-const ORDER = ["validating", "cloning", "committing", "pushing", "saving", "done"];
+/** UI ko‘rinishi — backend step nomlari o‘zgarmaydi */
+const ORDER = ["validating", "committing", "pushing", "saving"];
 const REVERT_ORDER = ["reverting", "pushing", "done"];
+
+function uiStep(step: string): string {
+  if (step === "cloning") return "validating";
+  if (step === "done") return "saving";
+  return step;
+}
 
 export function ProgressModal({
   open,
@@ -49,7 +56,12 @@ export function ProgressModal({
   const isError = step === "error";
   const isDone = step === "done";
   const steps = isRevert ? REVERT_ORDER : ORDER;
-  const activeIdx = steps.indexOf(isError ? "pushing" : step);
+  const displayStep = isRevert
+    ? step === "done"
+      ? "done"
+      : step
+    : uiStep(step);
+  const activeIdx = steps.indexOf(isError ? "pushing" : displayStep);
 
   const variant = isError
     ? "error"
@@ -117,7 +129,7 @@ export function ProgressModal({
           {steps.map((s, i) => {
             const done = activeIdx > i || isDone;
             const active =
-              step === s || (isError && s === "pushing" && activeIdx === i);
+              displayStep === s || (isError && s === "pushing" && activeIdx === i);
             const state = done ? "done" : active ? "active" : "todo";
             return (
               <li key={s} className={`progress-step progress-step--${state}`}>
