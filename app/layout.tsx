@@ -1,36 +1,35 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/Providers";
+import { Tashrif } from "tashrif/react";
 import "./globals.css";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "githubchi — yashil nuqtalar",
-  description: "GitHub contribution graph generator",
+    title: "githubchi — yashil nuqtalar",
+    description: "GitHub contribution graph generator",
 };
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html
-      lang="uz"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--fg)]">
-        <Providers>{children}</Providers>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="uz" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+            <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--fg)]">
+                <Tashrif clientId={process.env.TASHRIF_CLIENT_ID} />
+                <Providers>{children}</Providers>
+            </body>
+        </html>
+    );
 }
